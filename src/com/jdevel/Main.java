@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        // Obtain a list of all files within the directory
+        // Obtain a list of all input files within the directory
         ArrayList<File> inputFileList = InputFileReader.getFileListFromDirectory("/home/jonathan/workspace/google-hashcode-qual18-files");
 
         try {
@@ -18,11 +18,10 @@ public class Main {
 
                 // Read contents of the file
                 ArrayList<String> fileContent = InputFileReader.readLinesFromFile(file);
+
                 // Obtain the first line, containing the information about the pre-booked rides, then remove from fileContent list
                 String fileHeader = fileContent.get(0);
                 fileContent.remove(0);
-
-
                 // Obtain the integers from the first line in the input file
                 ArrayList<Integer> headerIntegers = InputFileReader.getSeparatedIntegersListFromString(fileHeader, "\\s");
 

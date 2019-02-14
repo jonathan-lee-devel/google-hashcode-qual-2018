@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 public class InputFileReader {
 
+    /**
+     * Obtains all files from within a directory and returns as an array list
+     * @param directoryPath the path to the directory
+     * @return an array list containing all files found within the directory
+     */
     public static ArrayList<File> getFileListFromDirectory(String directoryPath) {
         File directory = new File(directoryPath);
 
@@ -58,6 +63,12 @@ public class InputFileReader {
         return lineList;
     }
 
+    /**
+     * Returns all lines within a file as an array list of strings, containing a String for each line
+     * @param file file to read from
+     * @return array list containing a string for each line of file
+     * @throws IOException
+     */
     public static ArrayList<String> readLinesFromFile( File file ) throws IOException {
         // Pre-allocate list to contain lines
         ArrayList<String> lineList = new ArrayList<>();
