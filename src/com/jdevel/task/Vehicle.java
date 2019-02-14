@@ -8,7 +8,8 @@ public class Vehicle {
 
     private ArrayList<Ride> rideArrayList;
 
-    public Vehicle() {
+    public Vehicle(int id) {
+        this.setId(id);
         this.rideArrayList = new ArrayList<>();
     }
 

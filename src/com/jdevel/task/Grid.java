@@ -11,7 +11,8 @@ public class Grid {
     }
 
     public Grid(int numRows, int numColumns) {
-
+        this.numRows = numRows;
+        this.numColumns = numColumns;
     }
 
     public int getNumRows() {
