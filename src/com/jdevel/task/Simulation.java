@@ -29,4 +29,43 @@ public class Simulation {
         this.rideArrayList.add(ride);
     }
 
+    public Grid getGrid() {
+        return grid;
+    }
+
+    public void setGrid(Grid grid) {
+        this.grid = grid;
+    }
+
+    public ArrayList<Vehicle> getVehicleArrayList() {
+        return vehicleArrayList;
+    }
+
+    public void setVehicleArrayList(ArrayList<Vehicle> vehicleArrayList) {
+        this.vehicleArrayList = vehicleArrayList;
+    }
+
+    public ArrayList<Ride> getRideArrayList() {
+        return rideArrayList;
+    }
+
+    public void setRideArrayList(ArrayList<Ride> rideArrayList) {
+        this.rideArrayList = rideArrayList;
+    }
+
+    public int getPerRideTimelessBonus() {
+        return perRideTimelessBonus;
+    }
+
+    public void setPerRideTimelessBonus(int perRideTimelessBonus) {
+        this.perRideTimelessBonus = perRideTimelessBonus;
+    }
+
+    public int getNumSteps() {
+        return numSteps;
+    }
+
+    public void setNumSteps(int numSteps) {
+        this.numSteps = numSteps;
+    }
 }
