@@ -89,12 +89,13 @@ public class Main {
                         vehicleIntegers.add(ride.getId());
                     }
 
-                    outputLines.add(OutputFileWriter.createSpacedIntegerString(vehicleIntegers, "\\s"));
+                    outputLines.add(OutputFileWriter.createSpacedIntegerString(vehicleIntegers, " "));
                 }
 
-                OutputFileWriter.writeToFile(new File("/home/jonathan/test.txt"), outputLines);
-
-                break;
+                String outputFilePath = "/home/jonathan/workspace/google-hashcode-qual-2018/output_files/" + file.getName() + ".out";
+                File outputFile = new File(outputFilePath);
+                outputFile.createNewFile();
+                OutputFileWriter.writeToFile(outputFile, outputLines);
 
             }
         } catch(IOException e) {
