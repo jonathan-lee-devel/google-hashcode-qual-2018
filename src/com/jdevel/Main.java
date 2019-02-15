@@ -24,6 +24,7 @@ public class Main {
             for (File file : inputFileList) {
                 // Read contents of the file
                 ArrayList<String> fileContent = InputFileReader.readLinesFromFile(file);
+                System.out.println("Processing File: " + file.getName() + "...");
 
                 // Obtain the first line, containing the information about the pre-booked rides, then remove from fileContent list
                 String fileHeader = fileContent.get(0);
@@ -67,10 +68,12 @@ public class Main {
 
                 // Assign all rides to vehicles in order
                 ListIterator<Ride> rideListIterator = simulation.getRideArrayList().listIterator();
-                while (rideListIterator.hasNext()) {
+                ListIterator<Vehicle> vehicleRideAssign = simulation.getVehicleArrayList().listIterator();
+                while (rideListIterator.hasNext() && vehicleRideAssign.hasNext()) {
                     Ride ride = rideListIterator.next();
+                    Vehicle vehicle = vehicleRideAssign.next();
 
-                    simulation.getVehicleArrayList().get(0).assignRide(ride);
+                    vehicle.assignRide(ride);
                 }
 
                 // Iterate through all vehicle objects for the simulation
@@ -90,6 +93,8 @@ public class Main {
                 }
 
                 OutputFileWriter.writeToFile(new File("/home/jonathan/test.txt"), outputLines);
+
+                break;
 
             }
         } catch(IOException e) {
