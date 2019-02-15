@@ -25,16 +25,24 @@ public class Vehicle {
         this.rideArrayList.add(ride);
     }
 
+    public void nextRide() {
+        if (this.getCurrentRideIndex() < this.getRideArrayList().size()) {
+            this.setCurrentRideIndex(this.getCurrentRideIndex() + 1);
+        }
+    }
+
     public void step(int simulationStep) {
         switch(this.getCurrentState()) {
             case AVAILABLE:
-                this.setCurrentRideIndex(this.getCurrentRideIndex() + 1);// Update the ride index
+                this.nextRide();// Update the ride index
+                this.setCurrentState(VehicleState.WAITING);// Change state
+                this.step(simulationStep);// Recursively call method
                 break;
 
             case WAITING:
                 if (this.getCurrentRide().getEarliestStart() >= simulationStep) {// If it is at least the earliest start for the current ride
                     this.setCurrentState(VehicleState.EN_ROUTE);
-                    this.stepTowardsIntersection(this.getCurrentRide().getFinishIntersection());
+                    this.step(simulationStep);// Recursively call method after updating state
                 }
                 break;
 
@@ -42,12 +50,22 @@ public class Vehicle {
                 if (this.getCurrentLocation().equals(this.getCurrentRide().getFinishIntersection())) {// If it has reached the destination for the current ride
                     this.setCurrentState(VehicleState.AVAILABLE);
                 }
+                else {// Otherwise keep heading towards the finish intersection
+                    this.stepTowardsIntersection(this.getCurrentRide().getFinishIntersection());
+                }
                 break;
         }
     }
 
     private void stepTowardsIntersection(Intersection toIntersection) {
-
+        if ( (this.getCurrentLocation().x - toIntersection.x) != 0 ) {// If it is not on the same x-line as toIntersection
+            this.setCurrentLocation( (this.getCurrentLocation().x < toIntersection.x) ? this.getCurrentLocation.x + 1 : this.getCurrentLocation().x - 1 );
+        }
+        else {
+            if ( (this.getCurrentLocation.y - toIntersection.y) != 0 ) {// If it is not on the same y-line as toIntersection
+                this.setCurrentLocation( (this.getCurrentLocation().y < toIntersection.y) ? this.getCurrentLocation.y + 1 : this.getCurrentLocation().y - 1 );
+            }
+        }
     }
 
     public Ride getCurrentRide() {

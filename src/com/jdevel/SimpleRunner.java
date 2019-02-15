@@ -129,10 +129,8 @@ public class SimpleRunner {
                  */
 
                 if (currentVehicle.getCurrentLocation().equals( currentVehicle.getCurrentRide().getFinishIntersection() )) {// If the vehicle is at the finish intersection
-                    if (currentVehicle.getCurrentRide().getLatestFinish() > step) {
-                        // No score for late
-                    }
-                    else {// If it's on time, add 1, if it's early, add 1 + the bonus
+                    if (currentVehicle.getCurrentRide().getLatestFinish() <= step) {// If vehicle is on-time or early (no score for late)
+                        // Add 1 for on time, 1 + bonus for early
                         score += (currentVehicle.getCurrentRide().getLatestFinish() < step) ? 1 + simulation.getPerRideTimelessBonus() : 1;
                     }
                 }
